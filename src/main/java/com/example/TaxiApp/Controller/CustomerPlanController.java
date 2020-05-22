@@ -50,9 +50,8 @@ public class CustomerPlanController {
     @PostMapping
     private CustomerPlanSavedDto save(@RequestBody CustomerPlanCreateDto dto,
                                       @PathVariable Long id) throws ValidationExceptionDto {
-        CustomerPlan save = customerPlanService.save(dto, id);
+        CustomerPlanSavedDto save = customerPlansEndpoint.save(dto, id);
         Driver driver = driverPlansService.findById(dto.getDriverPlanId()).getDriver();
-        return customerPlanMapper.toCustomerPlanSavedDto(customerPlanMapper.
-                        toCustomerPlanDto(save), driverMapper.toDto(driver),save.getId());
+        return save;
     }
 }
