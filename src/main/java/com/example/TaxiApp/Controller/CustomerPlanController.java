@@ -1,13 +1,10 @@
 package com.example.TaxiApp.Controller;
 
-import com.example.TaxiApp.DTO.CustomerPlan.CustomerPlanCreateDto;
-import com.example.TaxiApp.DTO.CustomerPlan.CustomerPlanSavedDto;
-import com.example.TaxiApp.DTO.CustomerPlan.CustomerPlanSearchDto;
+import com.example.TaxiApp.DTO.CustomerPlan.*;
 import com.example.TaxiApp.DTO.DriverPlan.DriverPlanDto;
+import com.example.TaxiApp.DTO.error.CustomerMatchException;
 import com.example.TaxiApp.DTO.error.ValidationExceptionDto;
 import com.example.TaxiApp.Entity.Driver;
-import com.example.TaxiApp.Entity.Order.CustomerPlan;
-import com.example.TaxiApp.Entity.Order.DriverPlan;
 import com.example.TaxiApp.Mapper.CustomerPlanMapper;
 import com.example.TaxiApp.Mapper.DriverMapper;
 import com.example.TaxiApp.Mapper.DriverPlansMapper;
@@ -23,22 +20,16 @@ import java.util.List;
 @RequestMapping("/customerPlans/{id}")
 public class CustomerPlanController {
 
-    private final CustomerPlanService customerPlanService;
-    private final CustomerPlanMapper customerPlanMapper;
-    private final DriverPlansService driverPlansService;
-    private final DriverPlansMapper driverPlansMapper;
-    private final DriverMapper driverMapper;
     private final CustomerPlansEndpoint customerPlansEndpoint;
 
-    public CustomerPlanController(CustomerPlanService customerPlanService, CustomerPlanMapper customerPlanMapper,
-                                  DriverPlansService driverPlansService1, DriverPlansMapper driverPlansMapper,
-                                  DriverMapper driverMapper, CustomerPlansEndpoint customerPlansEndpoint) {
-        this.customerPlanService = customerPlanService;
-        this.customerPlanMapper = customerPlanMapper;
-        this.driverPlansService = driverPlansService1;
-        this.driverPlansMapper = driverPlansMapper;
-        this.driverMapper = driverMapper;
+    public CustomerPlanController(CustomerPlansEndpoint customerPlansEndpoint) {
+
         this.customerPlansEndpoint = customerPlansEndpoint;
+    }
+
+    @GetMapping
+    private List<CustomerPlanDto> findAllById(@PathVariable Long id) {
+        return customerPlansEndpoint.findAllByCustomerId(id);
     }
 
     @PostMapping("/search")
@@ -51,7 +42,13 @@ public class CustomerPlanController {
     private CustomerPlanSavedDto save(@RequestBody CustomerPlanCreateDto dto,
                                       @PathVariable Long id) throws ValidationExceptionDto {
         CustomerPlanSavedDto save = customerPlansEndpoint.save(dto, id);
-        Driver driver = driverPlansService.findById(dto.getDriverPlanId()).getDriver();
         return save;
     }
+
+    @DeleteMapping
+    private CustomerPlanDto delete(@RequestBody CustomerPlanDeleteDto customerPlanDeleteDto,
+                                   @PathVariable Long id) throws CustomerMatchException {
+        return customerPlansEndpoint.delete(id, customerPlanDeleteDto);
+    }
+
 }

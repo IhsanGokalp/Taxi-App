@@ -5,7 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ValidationExceptionResponse {
-    private Integer code;
+public class CarNotProvidedException extends Exception {
     private String message;
+    public CarNotProvidedException(String s) {
+        message=s;
+    }
 }

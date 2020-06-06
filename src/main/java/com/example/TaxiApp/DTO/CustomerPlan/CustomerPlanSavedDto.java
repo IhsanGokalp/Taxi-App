@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class CustomerPlanSavedDto {
     private Long customerPlanId;
-    private CustomerDto customerDto;
+    private Long customerId;
     private DriverDto driverDto;
     private Double fromLon;
     private Double fromLat;

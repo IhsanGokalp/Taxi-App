@@ -11,6 +11,6 @@ public interface CustomerPlanMapper {
 
     CustomerPlanDto toCustomerPlanDto(CustomerPlan saved);
 
-    CustomerPlanSavedDto toCustomerPlanSavedDto(CustomerPlanDto save,
-                                                DriverDto driverDto, Long id);
+    CustomerPlanSavedDto toCustomerPlanSavedDto(CustomerPlan dto,
+                                                DriverDto driverDto);
 }

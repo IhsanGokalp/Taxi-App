@@ -1,4 +1,4 @@
-package com.example.TaxiApp;
+package com.example.TaxiApp.Config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;

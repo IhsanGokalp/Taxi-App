@@ -7,6 +7,6 @@ import com.example.TaxiApp.Entity.Driver;
 import com.example.TaxiApp.Entity.Order.DriverPlan;
 
 public interface DriverPlansMapper {
-    DriverPlan toDriverPlan(DriverPlanCreateDto dto, Long id, Driver driver);
+    DriverPlan toDriverPlan(DriverPlanCreateDto dto, Driver driver);
     DriverPlanDto toDriverPlanDto(DriverPlan plan);
 }

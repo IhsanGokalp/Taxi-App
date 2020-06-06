@@ -7,10 +7,8 @@ import com.example.TaxiApp.DTO.Driver.DriverDto;
 import com.example.TaxiApp.Entity.Order.CustomerPlan;
 import com.example.TaxiApp.Mapper.CustomerMapper;
 import com.example.TaxiApp.Mapper.CustomerPlanMapper;
-import com.example.TaxiApp.Mapper.DriverMapper;
 import com.example.TaxiApp.Service.CustomerService;
 import com.example.TaxiApp.Service.DriverPlansService;
-import com.example.TaxiApp.Service.DriverService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -53,21 +51,21 @@ public class CustomerPlanMapperImpl implements CustomerPlanMapper {
         ans.setTime(customerPlan.getTime());
         ans.setToLat(customerPlan.getToLat());
         ans.setToLon(customerPlan.getToLon());
+        ans.setId(customerPlan.getId());
         return ans;
     }
 
     @Override
-    public CustomerPlanSavedDto toCustomerPlanSavedDto(CustomerPlanDto save, DriverDto driverDto,
-                                                       Long customerPlanId) {
+    public CustomerPlanSavedDto toCustomerPlanSavedDto(CustomerPlan save, DriverDto driverDto) {
         CustomerPlanSavedDto savedDto = new CustomerPlanSavedDto();
-        savedDto.setCustomerDto(save.getCustomerDto());
+        savedDto.setCustomerId(save.getCustomer().getId());
         savedDto.setFromLat(save.getFromLat());
         savedDto.setFromLon(save.getFromLon());
         savedDto.setToLat(save.getToLat());
         savedDto.setToLon(save.getToLon());
         savedDto.setNumOfPassengers(save.getNumOfPassengers());
         savedDto.setDriverDto(driverDto);
-        savedDto.setCustomerPlanId(customerPlanId);
+        savedDto.setCustomerPlanId(save.getId());
         return savedDto;
     }
 }

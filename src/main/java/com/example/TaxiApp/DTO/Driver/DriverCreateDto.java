@@ -9,7 +9,6 @@ import java.util.ArrayList;
 @Setter
 @Getter
 public class DriverCreateDto {
-    private Long id;
     private String firstName;
     private String surname;
     private String phoneNumber;

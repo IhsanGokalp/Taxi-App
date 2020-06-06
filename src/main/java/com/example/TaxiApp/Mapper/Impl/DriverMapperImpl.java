@@ -4,6 +4,7 @@ import com.example.TaxiApp.DTO.Driver.DriverCreateDto;
 import com.example.TaxiApp.DTO.Driver.DriverDto;
 import com.example.TaxiApp.DTO.Driver.DriverWithImageSavedDto;
 import com.example.TaxiApp.Entity.Driver;
+import com.example.TaxiApp.Entity.User;
 import com.example.TaxiApp.Mapper.CarMapper;
 import com.example.TaxiApp.Mapper.DriverMapper;
 import com.example.TaxiApp.Service.CarService;
@@ -24,11 +25,12 @@ public class DriverMapperImpl implements DriverMapper {
     }
 
 
-    public Driver toDriver(DriverCreateDto createDto) {
+    public Driver toDriver(DriverCreateDto createDto, User toBeInitialized) {
         Driver driver = new Driver();
         driver.setFirstName(createDto.getFirstName());
         driver.setPhoneNumber(createDto.getPhoneNumber());
         driver.setSurname(createDto.getSurname());
+        driver.setUser(toBeInitialized);
         return driver;
     }
 

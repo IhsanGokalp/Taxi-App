@@ -18,7 +18,7 @@ public class DriverPlansMapperImpl implements DriverPlansMapper {
     }
 
     @Override
-    public DriverPlan toDriverPlan(DriverPlanCreateDto dto, Long id, Driver driver) {
+    public DriverPlan toDriverPlan(DriverPlanCreateDto dto, Driver driver) {
         DriverPlan plan = new DriverPlan();
         plan.setAvailableSeats(dto.getAvailableSeats());
         plan.setDriver(driver);
@@ -27,7 +27,8 @@ public class DriverPlansMapperImpl implements DriverPlansMapper {
         plan.setTime(dto.getTime());
         plan.setToLat(dto.getToLat());
         plan.setToLon(dto.getToLon());
-        plan.setNumberOfPassengers(dto.getAvailableSeats());
+        plan.setNumberOfPassengers(0);
+        plan.setFilled(false);
         return plan;
     }
 

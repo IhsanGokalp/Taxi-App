@@ -9,6 +9,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class DriverPlanCreateDto {
+
     private Date time;
     private Double fromLat;
     private Double fromLon;

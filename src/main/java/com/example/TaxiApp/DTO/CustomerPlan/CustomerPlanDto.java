@@ -11,6 +11,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class CustomerPlanDto {
+    private Long id;
     private CustomerDto customerDto;
     private Date time;
     private Double fromLon;

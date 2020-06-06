@@ -4,16 +4,18 @@ import com.example.TaxiApp.DTO.Customer.CustomerCreateDto;
 import com.example.TaxiApp.DTO.Customer.CustomerDto;
 import com.example.TaxiApp.DTO.Customer.CustomerWithImageSavedDto;
 import com.example.TaxiApp.Entity.Customer;
+import com.example.TaxiApp.Entity.User;
 import org.springframework.stereotype.Service;
 
 
 @Service
 public class CustomerMapper {
-    public Customer toCustomer(CustomerCreateDto createDto) {
+    public Customer toCustomer(CustomerCreateDto createDto, User user_id) {
         Customer newCustomer = new Customer();
         newCustomer.setFirstName(createDto.getFirstName());
         newCustomer.setPhoneNumber(createDto.getPhoneNumber());
         newCustomer.setSurname(createDto.getSurname());
+        newCustomer.setUser(user_id);
         return newCustomer;
     }
     public CustomerDto toCustomerDto(Customer customer) {
